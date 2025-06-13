@@ -41,5 +41,3 @@ const fetchData  = async () => {
 
 fetchData();
 
-
-console.log(screenWidth);

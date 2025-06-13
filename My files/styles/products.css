@@ -80,6 +80,28 @@
   color: var(--Red);
 }
 
+/* Active state on Shopping Cart*/
+
+.image-container .shopping-cart-active{
+  background-color: var(--Red);
+  display: flex;
+  justify-content: space-around;
+  color: var(--Rose100);
+}
+
+.image-container .shopping-cart-active .span-btn{
+  border: solid var(--Rose100);
+  width: 1rem;
+  height: 1rem;
+  padding: 0.2rem;
+}
+
+.image-container .shopping-cart-active .span-btn:hover{
+  background-color: var(--Rose100);
+  color: var(--Red);
+}
+
+
 
 /* Cart section */
 

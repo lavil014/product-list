@@ -1,6 +1,21 @@
 const cardContainer = document.getElementById('card-container');
 const shoppingCartsrc = '/assets/images/icon-add-to-cart.svg'; 
-let screenWidth = screen.availWidth;
+const incrementImgsrc = '/assets/images/icon-increment-quantity.svg';
+const decrementImgsrc = '/assets/images/icon-decrement-quantity.svg'
+let screenWidth = window.innerWidth;
+
+
+const renderSpanactive = (name)=>{
+  return `
+  
+    <span class ='shopping-cart-active' data-name="${name}">
+      <img class="span-btn" src="${incrementImgsrc}" alt="">
+      <p>1</p>
+      <img class="span-btn" src="${decrementImgsrc}" alt="">
+    </span> 
+  
+  `
+}
 
 const renderCards = (image, category, name , price)=>{
     return `
@@ -8,9 +23,8 @@ const renderCards = (image, category, name , price)=>{
       <div class="card">
         <div class="image-container">
           <img src="${image}" alt="product-image">
-          <span class ='shopping-cart-span'>
-            <img src="${shoppingCartsrc}" alt="${name}"><p>Add to Cart</p>
-          </span> 
+          <span class ='shopping-cart-span' data-name="${name}">
+              <img src="${shoppingCartsrc}" alt="${name}"><p>Add to Cart</p>
         </div>
           <div class="product-information">
             <p class="header">${category}</p>
@@ -54,6 +68,22 @@ const fetchData  = async () => {
     });  
 
     cardContainer.innerHTML = HTMLCards;
+
+    cardContainer.addEventListener('click', (e)=>{
+
+      const clicked = e.target.closest('.shopping-cart-span');
+
+
+      if(clicked && !e.target.closest('shopping-cart-active')){
+
+        const productName = clicked.dataset.name;
+
+        clicked.outerHTML = renderSpanactive();
+
+        console.log(productName);
+      }
+
+    })
     
   }
   catch(error){
