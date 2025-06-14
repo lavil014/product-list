@@ -4,18 +4,12 @@ const incrementImgsrc = '/assets/images/icon-increment-quantity.svg';
 const decrementImgsrc = '/assets/images/icon-decrement-quantity.svg'
 let screenWidth = window.innerWidth;
 
+/*  Imports from scripts folder*/ 
 
-const renderSpanactive = (name)=>{
-  return `
-  
-    <span class ='shopping-cart-active' data-name="${name}">
-      <img class="span-btn" src="${incrementImgsrc}" alt="">
-      <p>1</p>
-      <img class="span-btn" src="${decrementImgsrc}" alt="">
-    </span> 
-  
-  `
-}
+import { handleProductcounter , renderSpanactive } from "./main.js";
+
+
+
 
 const renderCards = (image, category, name , price)=>{
     return `
@@ -48,6 +42,19 @@ const updateImagesrc = (image)=>{
     }
  }
 
+const handleClick = (e)=>{
+      const clicked = e.target.closest('.shopping-cart-span');
+
+
+      if(clicked && !e.target.closest('shopping-cart-active')){
+
+        const productName = clicked.dataset.name;
+
+        clicked.outerHTML = renderSpanactive();
+
+        console.log(productName);
+      }
+}
 
 const fetchData  = async () => {
   try{
@@ -69,21 +76,9 @@ const fetchData  = async () => {
 
     cardContainer.innerHTML = HTMLCards;
 
-    cardContainer.addEventListener('click', (e)=>{
-
-      const clicked = e.target.closest('.shopping-cart-span');
-
-
-      if(clicked && !e.target.closest('shopping-cart-active')){
-
-        const productName = clicked.dataset.name;
-
-        clicked.outerHTML = renderSpanactive();
-
-        console.log(productName);
-      }
-
-    })
+    cardContainer.addEventListener('click', handleClick)
+    
+    cardContainer.addEventListener('click', handleProductcounter);
     
   }
   catch(error){

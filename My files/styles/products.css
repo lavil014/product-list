@@ -89,6 +89,10 @@
   color: var(--Rose100);
 }
 
+.image-container .shopping-cart-active:hover{
+  color:  var(--Rose100);
+}
+
 .image-container .shopping-cart-active .span-btn{
   border: solid var(--Rose100);
   width: 1rem;
@@ -98,7 +102,6 @@
 
 .image-container .shopping-cart-active .span-btn:hover{
   background-color: var(--Rose100);
-  color: var(--Red);
 }
 
 
