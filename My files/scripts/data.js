@@ -11,14 +11,14 @@ import { handleProductcounter , renderSpanactive } from "./main.js";
 
 
 
-const renderCards = (image, category, name , price)=>{
+export const renderCards = (image, category, name , price)=>{
     return `
-    
       <div class="card">
         <div class="image-container">
           <img src="${image}" alt="product-image">
           <span class ='shopping-cart-span' data-name="${name}">
               <img src="${shoppingCartsrc}" alt="${name}"><p>Add to Cart</p>
+          </span> 
         </div>
           <div class="product-information">
             <p class="header">${category}</p>
@@ -52,7 +52,6 @@ const handleClick = (e)=>{
 
         clicked.outerHTML = renderSpanactive();
 
-        console.log(productName);
       }
 }
 
