@@ -1,33 +1,14 @@
 const cardContainer = document.getElementById('card-container');
-const shoppingCartsrc = '/assets/images/icon-add-to-cart.svg'; 
-const incrementImgsrc = '/assets/images/icon-increment-quantity.svg';
-const decrementImgsrc = '/assets/images/icon-decrement-quantity.svg'
 let screenWidth = window.innerWidth;
 
 /*  Imports from scripts folder*/ 
 
-import { handleProductcounter , renderSpanactive } from "./main.js";
+import { handleProductcounter } from "./main.js";
+import { increaseCounter } from "./handlers.js";
+import {renderCards , renderCart} from "./renders.js";
 
 
 
-
-export const renderCards = (image, category, name , price)=>{
-    return `
-      <div class="card">
-        <div class="image-container">
-          <img src="${image}" alt="product-image">
-          <span class ='shopping-cart-span' data-name="${name}">
-              <img src="${shoppingCartsrc}" alt="${name}"><p>Add to Cart</p>
-          </span> 
-        </div>
-          <div class="product-information">
-            <p class="header">${category}</p>
-            <p class="product-description">${name}</p>
-            <p class="product-price">$ ${price}</p>
-          </div>
-        </div>
-    `
-}
 
 const updateImagesrc = (image)=>{
     
@@ -41,19 +22,6 @@ const updateImagesrc = (image)=>{
       return image = image.desktop;
     }
  }
-
-const handleClick = (e)=>{
-      const clicked = e.target.closest('.shopping-cart-span');
-
-
-      if(clicked && !e.target.closest('shopping-cart-active')){
-
-        const productName = clicked.dataset.name;
-
-        clicked.outerHTML = renderSpanactive();
-
-      }
-}
 
 const fetchData  = async () => {
   try{
@@ -75,7 +43,7 @@ const fetchData  = async () => {
 
     cardContainer.innerHTML = HTMLCards;
 
-    cardContainer.addEventListener('click', handleClick)
+    cardContainer.addEventListener('click', increaseCounter)
     
     cardContainer.addEventListener('click', handleProductcounter);
     
@@ -86,4 +54,6 @@ const fetchData  = async () => {
 }
 
 fetchData();
+
+renderCart();
 
