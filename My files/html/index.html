@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="/My files/styles/main.css">
   <link rel="stylesheet" href="/My files/styles/products.css">
+  <link rel="stylesheet" href="/My files/styles/cart.css">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inconsolata:wght@200..900&family=Josefin+Sans:ital,wght@0,100..700;1,100..700&family=Libre+Franklin:ital,wght@0,100..900;1,100..900&family=Overpass:ital,wght@0,100..900;1,100..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Red+Hat+Text:ital,wght@0,300..700;1,300..700&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&family=Rubik:ital,wght@0,300..900;1,300..900&family=Space+Mono:ital,wght@0,400;0,700;1,400;1,700&family=Work+Sans:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
@@ -17,26 +18,43 @@
     <section class="products-section">
       <p>Desserts</p>
       <div id="card-container" class="products-container">
-        <!-- This content has been rendered from JS using fetch, refer to the data.js file -->
+        <!-- This content has been rendered from JS using fetch, refer to the render.js file -->
       </div>
     </section>
     <section id="cart-section" class="cart-section">
 
-      <!--  
-      
-      <p class="header">Your Cart (0)</p>
-      <div class="items-section">
-        <img src="/assets/images/illustration-empty-cart.svg" alt="">
-      <p>Your added items will appear here</p>
-      </div> 
-      
-      -->
+      <!-- This content has been rendered from render.js file -->
+      <div class="cart-information">
+        <p class="header">Your Cart (0)</p>
+
+        <ul>
+          <li>
+            <div>
+              <div class="ordered-product-container">
+                <p>Classic Tiramisu</p>
+                <div class="product-info-container">
+                  <span id= "quantity">1x</span> <span id="price">@$5.50</span> <span id="total">$5.50</span>
+                </div>  
+              </div>
+              <img src="/assets/images/icon-remove-item.svg" alt="">
+            </div>
+          </li>
+        </ul>
+      </div>
+      <div class="total-container">
+        <span><p>Order Total</p><p>$46.50</p></span>
+        <div>
+          <img src="/assets/images/" alt="">
+        </div>
+      </div>
       
     </section>
   </main>
   <main style="display: none;">
 
   </main>
-  <script type="module" src="/My files/scripts/data.js"></script>
+
+  <!-- <script type="module" src="/My files/scripts/data.js"></script> -->
+  
 </body>
 </html>
