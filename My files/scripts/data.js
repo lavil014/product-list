@@ -5,7 +5,7 @@ let screenWidth = window.innerWidth;
 
 import { handleProductcounter } from "./main.js";
 import { increaseCounter } from "./handlers.js";
-import {renderCards , renderCart} from "./renders.js";
+import {renderCards , renderCart, renderProductlist} from "./renders.js";
 
 
 
@@ -55,5 +55,5 @@ const fetchData  = async () => {
 
 fetchData();
 
-renderCart();
+
 

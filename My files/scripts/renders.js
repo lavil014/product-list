@@ -4,6 +4,8 @@ const incrementImgsrc = '/assets/images/icon-increment-quantity.svg';
 const decrementImgsrc = '/assets/images/icon-decrement-quantity.svg';
 const emptyCardilustration = '/assets/images/illustration-empty-cart.svg'
 const cartSection = document.getElementById ('cart-section');
+const cartCount = document.getElementById('cart-count');
+
 
 
 export const renderCards = (image, category, name , price)=>{
@@ -37,7 +39,7 @@ export const renderSpanactive = (name)=>{
 }
 
 export const renderCart = ()=>{
-  return cartSection.innerHTML = `
+  cartSection.innerHTML = `
   <p class="header">Your Cart (0)</p>
       <div class="items-section">
         <img src="${emptyCardilustration}" alt="Empty card image">
@@ -45,3 +47,66 @@ export const renderCart = ()=>{
       </div> 
   `
 }
+
+
+
+export const renderProductlist = (productDescription,quantity,price,total)=>{
+  
+  const productList = document.getElementById('product-list');
+
+  const existingProduct = productList.querySelector(`li[data-name="${productDescription}"]`)
+
+  if(existingProduct){
+    const quantitySpan = existingProduct.querySelector('.product-quantity');
+    const priceSpan = existingProduct.querySelector('.product-price');
+    const totalSpan = existingProduct.querySelector('.product-total');
+
+
+
+    quantitySpan.textContent = quantity;
+    priceSpan.textContent = price;
+    totalSpan.textContent = total;
+
+
+  }else{
+    const productItem = 
+    `
+      <li data-name="${productDescription}">
+        <div>
+            <div class="ordered-product-container">
+              <p>${productDescription}</p>
+                <div class="product-info-container">
+                  <span class ="product-quantity">${quantity}</span> 
+                  <span class ="product-price">${price}</span> 
+                  <span class ="product-total">${total}</span>
+                </div>  
+            </div>
+            <img id ="remove-product" class="remove-icon" src="/assets/images/icon-remove-item.svg" alt="">
+        </div>
+      </li>
+    `;
+
+    productList.insertAdjacentHTML('beforeend', productItem);
+
+    const removebtn = productItem.querySelector('#remove-product');
+
+
+  }
+
+  
+  console.log(removebtn)
+
+  const updatedCartcount = productList.childElementCount;
+
+  cartCount.textContent = `(${updatedCartcount})`;
+
+}
+
+
+
+
+
+
+
+
+
