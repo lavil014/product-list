@@ -1,5 +1,8 @@
 const cardContainer = document.getElementById('card-container');
 let screenWidth = window.innerWidth;
+const cartSection = document.getElementById ('cart-section');
+
+
 
 /*  Imports from scripts folder*/ 
 
@@ -25,6 +28,7 @@ const updateImagesrc = (image)=>{
 
 const fetchData  = async () => {
   try{
+
     const response = await fetch('/data.json');
 
 
@@ -43,9 +47,14 @@ const fetchData  = async () => {
 
     cardContainer.innerHTML = HTMLCards;
 
+    renderCart()
+
+
     cardContainer.addEventListener('click', increaseCounter)
     
     cardContainer.addEventListener('click', handleProductcounter);
+
+    
     
   }
   catch(error){

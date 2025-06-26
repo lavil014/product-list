@@ -1,5 +1,7 @@
 const incrementImgsrc = '/assets/images/icon-increment-quantity.svg';
 const decrementImgsrc = '/assets/images/icon-decrement-quantity.svg';
+const cartCount = document.getElementById('cart-count');
+
 
 import { renderProductlist, renderCart } from "./renders.js";
 
@@ -11,6 +13,7 @@ export const handleProductcounter = (e)=>{
   let total = 0;
 
   if(e.target.closest('.card')){
+
     const card = e.target.closest('.card');
     const productInfodiv = card.querySelector('.product-information');
     
@@ -43,15 +46,9 @@ export const handleProductcounter = (e)=>{
 
       renderProductlist(productDescription,quantity,price,total);
     } 
-
-  } 
-
+  }
  
-              
-    
-
-  
-
+            
   const mycustomEvent = new CustomEvent('updateProductquantity', {
         detail: {
           name : productDescription,

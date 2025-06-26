@@ -5,6 +5,9 @@ const decrementImgsrc = '/assets/images/icon-decrement-quantity.svg';
 const emptyCardilustration = '/assets/images/illustration-empty-cart.svg'
 const cartSection = document.getElementById ('cart-section');
 const cartCount = document.getElementById('cart-count');
+const productList = document.getElementById('product-list');
+
+
 
 
 
@@ -40,19 +43,24 @@ export const renderSpanactive = (name)=>{
 
 export const renderCart = ()=>{
   cartSection.innerHTML = `
-  <p class="header">Your Cart (0)</p>
+  <p class="header">Your Cart <span id="cart-count">(0)</span></p>
+     <ul id = "product-list"> </ul>
       <div class="items-section">
-        <img src="${emptyCardilustration}" alt="Empty card image">
-        <p>Your added items will appear here</p>
+       
+        <img id = "empty-card-ilustration" src="${emptyCardilustration}" alt="Empty card image">
+        <p id ="card-ilustration-header">Your added items will appear here</p>
       </div> 
   `
 }
 
 
 
+
+
 export const renderProductlist = (productDescription,quantity,price,total)=>{
   
   const productList = document.getElementById('product-list');
+
 
   const existingProduct = productList.querySelector(`li[data-name="${productDescription}"]`)
 
@@ -87,18 +95,29 @@ export const renderProductlist = (productDescription,quantity,price,total)=>{
     `;
 
     productList.insertAdjacentHTML('beforeend', productItem);
-
-    const removebtn = productItem.querySelector('#remove-product');
-
-
   }
-
-  
-  console.log(removebtn)
 
   const updatedCartcount = productList.childElementCount;
 
   cartCount.textContent = `(${updatedCartcount})`;
+
+
+  /* Code used to update UI to show and hide empty cart ilustrtation*/ 
+
+    if(updatedCartcount > 0){
+      const emptyCardImage = document.getElementById('empty-card-ilustration');
+      const cardIlustrtationheader = document.getElementById('card-ilustration-header');
+  
+
+      emptyCardImage.style.display = 'none';
+      cardIlustrtationheader.style.display = 'none';
+    } else{
+      emptyCardImage.style.display = 'flex';
+      cardIlustrtationheader.style.display = 'flex';
+    }
+    
+
+    /*NECESITO ACTUALIZAR EL TEXT CONTENT DE PRODUCT COUNT EN RENDER CART. */ 
 
 }
 
