@@ -1,0 +1,7 @@
+Corregir el error en el count ya que no me deja elegir 1 como cantidad
+Crear funcion para que me permita borrar ordenes
+Renderizar el botom en el cart mas la seccion de el total con la cantidad y precio
+Crear funcion para que me deje mandar los productos a la seccion de los productos seleccionados
+Crear la seccion de el mensaje de los productos ordenados y darle estilos con CSS.
+
+Final de el projecto

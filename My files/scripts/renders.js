@@ -3,12 +3,9 @@ const shoppingCartsrc = '/assets/images/icon-add-to-cart.svg';
 const incrementImgsrc = '/assets/images/icon-increment-quantity.svg';
 const decrementImgsrc = '/assets/images/icon-decrement-quantity.svg';
 const emptyCardilustration = '/assets/images/illustration-empty-cart.svg'
-const cartSection = document.getElementById ('cart-section');
+const cartInformation = document.getElementById ('cart-information');
 const cartCount = document.getElementById('cart-count');
 const productList = document.getElementById('product-list');
-
-
-
 
 
 export const renderCards = (image, category, name , price)=>{
@@ -40,21 +37,6 @@ export const renderSpanactive = (name)=>{
   
   `
 }
-
-export const renderCart = ()=>{
-  cartSection.innerHTML = `
-  <p class="header">Your Cart <span id="cart-count">(0)</span></p>
-     <ul id = "product-list"> </ul>
-      <div class="items-section">
-       
-        <img id = "empty-card-ilustration" src="${emptyCardilustration}" alt="Empty card image">
-        <p id ="card-ilustration-header">Your added items will appear here</p>
-      </div> 
-  `
-}
-
-
-
 
 
 export const renderProductlist = (productDescription,quantity,price,total)=>{
@@ -97,12 +79,12 @@ export const renderProductlist = (productDescription,quantity,price,total)=>{
     productList.insertAdjacentHTML('beforeend', productItem);
   }
 
-  const updatedCartcount = productList.childElementCount;
-
-  cartCount.textContent = `(${updatedCartcount})`;
+   const updatedCartcount = productList.childElementCount;
 
 
-  /* Code used to update UI to show and hide empty cart ilustrtation*/ 
+   cartCount.textContent = `(${updatedCartcount})`; 
+
+  /*Code used to update UI to show and hide empty cart ilustrtation */
 
     if(updatedCartcount > 0){
       const emptyCardImage = document.getElementById('empty-card-ilustration');
@@ -116,11 +98,20 @@ export const renderProductlist = (productDescription,quantity,price,total)=>{
       cardIlustrtationheader.style.display = 'flex';
     }
     
-
-    /*NECESITO ACTUALIZAR EL TEXT CONTENT DE PRODUCT COUNT EN RENDER CART. */ 
-
+  
 }
 
+export const renderCart = ()=>{
+  cartInformation.innerHTML = `
+     <ul id = "product-list"> </ul>
+      <div class="items-section">
+       
+        <img id = "empty-card-ilustration" src="${emptyCardilustration}" alt="Empty card image">
+        <p id ="card-ilustration-header">Your added items will appear here</p>
+      </div> 
+  `
+
+}
 
 
 
