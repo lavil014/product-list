@@ -5,7 +5,10 @@ const cartCount = document.getElementById('cart-count');
 
 import { renderProductlist, renderCart } from "./renders.js";
 
-export const handleProductcounter = (e)=>{
+
+
+
+ export const handleProductcounter = (e)=>{
 
   let quantity = 0;
   let productDescription = '';
@@ -31,6 +34,7 @@ export const handleProductcounter = (e)=>{
     if(span){
       const counter = span.querySelector('p');
       quantity = parseInt(counter.textContent);
+
 
       const decrement = e.target.matches('.decrement-counter');
       const increment = e.target.matches('.increment-counter');
