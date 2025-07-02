@@ -31,7 +31,7 @@ export const renderSpanactive = (name)=>{
 
     <span class ='shopping-cart-active' data-name="${name}">
       <img class="span-btn decrement-counter" src="${decrementImgsrc}" alt="">
-      <p class='product-counter'>1</p>
+      <p class='product-counter'>0</p>
       <img class="span-btn increment-counter" src="${incrementImgsrc}" alt="">
     </span> 
   
