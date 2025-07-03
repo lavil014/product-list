@@ -44,11 +44,14 @@ import { renderProductlist, renderCart } from "./renders.js";
         quantity--;
       }
 
-      counter.textContent = quantity;
-
-      total = quantity * price;
-
-      renderProductlist(productDescription,quantity,price,total);
+      if(quantity === 0){
+      
+        return
+      } else{
+        counter.textContent = quantity;
+        total = quantity * price;
+        renderProductlist(productDescription,quantity,price,total);
+      }
     } 
   }
  

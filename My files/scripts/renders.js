@@ -8,6 +8,10 @@ const cartCount = document.getElementById('cart-count');
 const productList = document.getElementById('product-list');
 
 
+
+import { removeCartItem } from "./handlers.js";
+
+
 export const renderCards = (image, category, name , price)=>{
     return `
       <div class="card">
@@ -38,6 +42,17 @@ export const renderSpanactive = (name)=>{
   `
 }
 
+export const renderCart = ()=>{
+  cartInformation.innerHTML = `
+     <ul id = "product-list"> </ul>
+      <div class="items-section">
+       
+        <img id = "empty-card-ilustration" src="${emptyCardilustration}" alt="Empty card image">
+        <p id ="card-ilustration-header">Your added items will appear here</p>
+      </div> 
+  `
+
+}
 
 export const renderProductlist = (productDescription,quantity,price,total)=>{
   
@@ -77,13 +92,30 @@ export const renderProductlist = (productDescription,quantity,price,total)=>{
     `;
 
     productList.insertAdjacentHTML('beforeend', productItem);
+
+    
+    // Desde aca deberia partir mi funcion de manejar el evento del click para borrar el item
+
+    let removebtns = document.querySelectorAll('.remove-icon');
+
+
+    removebtns.forEach((btn)=>{
+      btn.addEventListener('click', (e)=>{
+       
+        const cartItem = e.target.closest('li');
+
+        cartItem.remove();
+
+      })
+
+      
+
+    })
   }
 
    const updatedCartcount = productList.childElementCount;
-
-
    cartCount.textContent = `(${updatedCartcount})`; 
-
+      
   /*Code used to update UI to show and hide empty cart ilustrtation */
 
     if(updatedCartcount > 0){
@@ -97,21 +129,11 @@ export const renderProductlist = (productDescription,quantity,price,total)=>{
       emptyCardImage.style.display = 'flex';
       cardIlustrtationheader.style.display = 'flex';
     }
-    
-  
-}
-
-export const renderCart = ()=>{
-  cartInformation.innerHTML = `
-     <ul id = "product-list"> </ul>
-      <div class="items-section">
-       
-        <img id = "empty-card-ilustration" src="${emptyCardilustration}" alt="Empty card image">
-        <p id ="card-ilustration-header">Your added items will appear here</p>
-      </div> 
-  `
 
 }
+
+
+
 
 
 
