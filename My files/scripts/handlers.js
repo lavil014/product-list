@@ -1,5 +1,5 @@
 
-import { renderSpanactive, renderProductlist } from "./renders.js";
+import { renderSpanactive,updateCartcount } from "./renders.js";
 
 export const increaseCounter = (e)=>{
     const clicked = e.target.closest('.shopping-cart-span');
@@ -16,9 +16,15 @@ export const increaseCounter = (e)=>{
     }
 }
 
-export const removeCartItem = (removebtn)=>{
-  
+export const removeCartitems = (e)=>{
+      
+  if(e.target.classList.contains('remove-icon')){
+    const cartItem = e.target.closest('li');
+
+    cartItem.remove();
+
+    updateCartcount()
+
+  }
 
 }
-
-removeCartItem()

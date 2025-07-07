@@ -5,12 +5,8 @@ const decrementImgsrc = '/assets/images/icon-decrement-quantity.svg';
 const emptyCardilustration = '/assets/images/illustration-empty-cart.svg'
 const cartInformation = document.getElementById ('cart-information');
 const cartCount = document.getElementById('cart-count');
-const productList = document.getElementById('product-list');
 
-
-
-import { removeCartItem } from "./handlers.js";
-
+import { removeCartitems } from "./handlers.js";
 
 export const renderCards = (image, category, name , price)=>{
     return `
@@ -54,6 +50,27 @@ export const renderCart = ()=>{
 
 }
 
+export const updateCartcount = ()=>{
+
+    const productList = document.getElementById('product-list');
+    const updatedCartcount = productList.childElementCount;
+    cartCount.textContent = `(${updatedCartcount})`; 
+    const emptyCardImage = document.getElementById('empty-card-ilustration');
+    const cardIlustrtationheader = document.getElementById('card-ilustration-header');
+   
+  /* Code used to update UI to show and hide empty cart ilustrtation */
+
+    if(updatedCartcount > 0){
+      emptyCardImage.style.display = 'none';
+      cardIlustrtationheader.style.display = 'none';
+    } else{
+      emptyCardImage.style.display = 'flex';
+      cardIlustrtationheader.style.display = 'flex';
+    }
+}
+
+
+
 export const renderProductlist = (productDescription,quantity,price,total)=>{
   
   const productList = document.getElementById('product-list');
@@ -93,43 +110,11 @@ export const renderProductlist = (productDescription,quantity,price,total)=>{
 
     productList.insertAdjacentHTML('beforeend', productItem);
 
-    
-    // Desde aca deberia partir mi funcion de manejar el evento del click para borrar el item
+    productList.addEventListener('click', removeCartitems);
 
-    let removebtns = document.querySelectorAll('.remove-icon');
-
-
-    removebtns.forEach((btn)=>{
-      btn.addEventListener('click', (e)=>{
-       
-        const cartItem = e.target.closest('li');
-
-        cartItem.remove();
-
-      })
-
-      
-
-    })
   }
 
-   const updatedCartcount = productList.childElementCount;
-   cartCount.textContent = `(${updatedCartcount})`; 
-      
-  /*Code used to update UI to show and hide empty cart ilustrtation */
-
-    if(updatedCartcount > 0){
-      const emptyCardImage = document.getElementById('empty-card-ilustration');
-      const cardIlustrtationheader = document.getElementById('card-ilustration-header');
-  
-
-      emptyCardImage.style.display = 'none';
-      cardIlustrtationheader.style.display = 'none';
-    } else{
-      emptyCardImage.style.display = 'flex';
-      cardIlustrtationheader.style.display = 'flex';
-    }
-
+  updateCartcount();
 }
 
 
