@@ -61,7 +61,7 @@ export const rendertotalContainer = (updatedCartcount)=>{
   if(updatedCartcount>0){
       totalContainer.innerHTML = `
       <div class="total-container">
-        <span><p class="order-total">Order Total</p><p class="total-amount" id="total-amount">$46.50</p></span>
+        <span><p class="order-total">Order Total</p><p class="total-amount" id="total-amount">${totalAmount}</p></span>
         <div class="carbon-neutral-container">
           <img class="carbon-neutral" src="/assets/images/icon-carbon-neutral.svg" alt="carbon-neutral-icon">
           <p>This is a carbon-neutral delivery</p>
