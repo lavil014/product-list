@@ -6,6 +6,7 @@ const emptyCardilustration = '/assets/images/illustration-empty-cart.svg'
 const cartInformation = document.getElementById ('cart-information');
 const cartCount = document.getElementById('cart-count');
 
+
 import { removeCartitems } from "./handlers.js";
 
 export const renderCards = (image, category, name , price)=>{
@@ -46,9 +47,35 @@ export const renderCart = ()=>{
         <img id = "empty-card-ilustration" src="${emptyCardilustration}" alt="Empty card image">
         <p id ="card-ilustration-header">Your added items will appear here</p>
       </div> 
+      <div class="total-container" id="total-container">
+
+      </div>
   `
+}
+
+export const rendertotalContainer = (updatedCartcount)=>{
+
+
+  const totalContainer = document.getElementById('total-container');
+
+  if(updatedCartcount>0){
+      totalContainer.innerHTML = `
+      <div class="total-container">
+        <span><p class="order-total">Order Total</p><p class="total-amount" id="total-amount">$46.50</p></span>
+        <div class="carbon-neutral-container">
+          <img class="carbon-neutral" src="/assets/images/icon-carbon-neutral.svg" alt="carbon-neutral-icon">
+          <p>This is a carbon-neutral delivery</p>
+        </div>
+        <button>Confirm Order</button>
+      </div>
+    `
+  } else if(updatedCartcount <=0){
+       totalContainer.innerHTML = ``;
+  }
+
 
 }
+
 
 export const updateCartcount = ()=>{
 
@@ -63,20 +90,42 @@ export const updateCartcount = ()=>{
     if(updatedCartcount > 0){
       emptyCardImage.style.display = 'none';
       cardIlustrtationheader.style.display = 'none';
+      rendertotalContainer(updatedCartcount);
     } else{
       emptyCardImage.style.display = 'flex';
       cardIlustrtationheader.style.display = 'flex';
+      rendertotalContainer(updatedCartcount);
     }
 }
 
+const addTotals = (totals)=>{
 
+  
+
+  let totalAmount = 0;
+
+  console.log(totalAmount);
+
+  totals.forEach((total)=>{
+    
+    let itemTotal = total.textContent;
+
+    let totaltoInt = parseFloat(itemTotal);
+
+  
+    totalAmount += totaltoInt;
+
+    console.log(totalAmount);
+
+  })
+
+  
+}
 
 export const renderProductlist = (productDescription,quantity,price,total)=>{
   
   const productList = document.getElementById('product-list');
-
-
-  const existingProduct = productList.querySelector(`li[data-name="${productDescription}"]`)
+  const existingProduct = productList.querySelector(`li[data-name="${productDescription}"]`);
 
   if(existingProduct){
     const quantitySpan = existingProduct.querySelector('.product-quantity');
@@ -112,11 +161,15 @@ export const renderProductlist = (productDescription,quantity,price,total)=>{
 
     productList.addEventListener('click', removeCartitems);
 
+    let totals = document.querySelectorAll('.product-total');
+
+    addTotals(totals);
+
+
   }
 
   updateCartcount();
 }
-
 
 
 

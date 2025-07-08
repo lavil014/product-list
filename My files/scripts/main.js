@@ -3,10 +3,7 @@ const decrementImgsrc = '/assets/images/icon-decrement-quantity.svg';
 const cartCount = document.getElementById('cart-count');
 
 
-import { renderProductlist, renderCart } from "./renders.js";
-
-
-
+import { renderProductlist, renderCart, rendertotalContainer } from "./renders.js";
 
  export const handleProductcounter = (e)=>{
 
