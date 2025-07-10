@@ -5,7 +5,7 @@ const decrementImgsrc = '/assets/images/icon-decrement-quantity.svg';
 const emptyCardilustration = '/assets/images/illustration-empty-cart.svg'
 const cartInformation = document.getElementById ('cart-information');
 const cartCount = document.getElementById('cart-count');
-let totalAmount = 0;
+
 
 
 
@@ -56,17 +56,15 @@ export const renderCart = ()=>{
 }
 
 export const addTotals = (totals)=>{
-      
+    let totalAmount = 0;
+
     totals.forEach((total)=>{
     
     let itemTotal = total.textContent;
 
     let totaltoInt = parseFloat(itemTotal);
-      console.log(totaltoInt);
-  
+    
     totalAmount += totaltoInt;
-
-    console.log(totalAmount);
 
   })
 
@@ -105,10 +103,6 @@ export const rendertotalContainer = (updatedCartcount)=>{
 
 }
 
-
-
-
-
 export const updateCartcount = ()=>{
 
     const productList = document.getElementById('product-list');
@@ -131,7 +125,6 @@ export const updateCartcount = ()=>{
       rendertotalContainer(updatedCartcount);
     }
 }
-
 
 export const renderProductlist = (productDescription,quantity,price,total)=>{
   
@@ -176,7 +169,7 @@ export const renderProductlist = (productDescription,quantity,price,total)=>{
 
 
 
-    addTotals(totals, totalAmount);
+    addTotals(totals);
 
 
   }
