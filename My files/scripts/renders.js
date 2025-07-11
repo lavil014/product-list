@@ -9,7 +9,7 @@ const cartCount = document.getElementById('cart-count');
 
 
 
-import { removeCartitems } from "./handlers.js";
+import { removeCartitems, submitOrder } from "./handlers.js";
 
 export const renderCards = (image, category, name , price)=>{
     return `
@@ -93,9 +93,11 @@ export const rendertotalContainer = (updatedCartcount)=>{
           <img class="carbon-neutral" src="/assets/images/icon-carbon-neutral.svg" alt="carbon-neutral-icon">
           <p>This is a carbon-neutral delivery</p>
         </div>
-        <button>Confirm Order</button>
+        <button id="submit-btn">Confirm Order</button>
       </div>
     `
+    submitOrder()
+
   } else if(updatedCartcount <=0){
        totalContainer.innerHTML = ``;
   }

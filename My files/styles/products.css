@@ -11,6 +11,11 @@
   --Rose900: hsl(14, 65%, 9%);
 }
 
+.products-main{
+  position: relative;
+  /* opacity: 0.3; */
+}
+
 .card{
   display: flex;
   flex-direction: column;

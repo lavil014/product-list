@@ -28,3 +28,15 @@ export const removeCartitems = (e)=>{
   }
 
 }
+
+export const submitOrder = ()=>{
+
+  const submitBtn = document.getElementById('submit-btn');
+
+  submitBtn.addEventListener('click', ()=>{
+    
+    console.log('Function is working')
+      
+  })
+
+}
