@@ -1,4 +1,7 @@
 
+const displayOrdersection = document.getElementById('display-order-section');
+const productsSection = document.getElementById('products-main');
+
 import { renderSpanactive,updateCartcount } from "./renders.js";
 
 export const increaseCounter = (e)=>{
@@ -35,7 +38,9 @@ export const submitOrder = ()=>{
 
   submitBtn.addEventListener('click', ()=>{
     
-    console.log('Function is working')
+    /* This code display the order section on the UI*/ 
+    displayOrdersection.style.display = 'flex';
+    productsSection.style.opacity = 0.3;
       
   })
 

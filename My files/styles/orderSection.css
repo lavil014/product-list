@@ -17,7 +17,6 @@
 }
 
 .display-order{
-    border: solid red;
     height: 100dvh;
     display: flex;
     align-items: center;

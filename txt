@@ -3,7 +3,11 @@ Agregar condicional para que el usuario no pueda agregar el pedido con cantidad 
 Crear funcion para que me permita borrar ordenes (COMPLETED)
 Actualizar el cart count en la seccion del Cart (COMPLETED)
 Renderizar el botom en el cart mas la seccion de el total con la cantidad y precio(COMPLETED)
+Crear la seccion de el mensaje de los productos ordenados y darle estilos con CSS (COMPLETED).
 Crear funcion para que me deje mandar los productos a la seccion de los productos seleccionados
-Crear la seccion de el mensaje de los productos ordenados y darle estilos con CSS.
+
+
+
+
 
 Final de el projecto

@@ -5,7 +5,7 @@ const decrementImgsrc = '/assets/images/icon-decrement-quantity.svg';
 const emptyCardilustration = '/assets/images/illustration-empty-cart.svg'
 const cartInformation = document.getElementById ('cart-information');
 const cartCount = document.getElementById('cart-count');
-
+const displayOrdersection = document.getElementById('display-order-section');
 
 
 
@@ -72,7 +72,6 @@ export const addTotals = (totals)=>{
 
 }
 
-
 export const rendertotalContainer = (updatedCartcount)=>{
 
   
@@ -93,7 +92,7 @@ export const rendertotalContainer = (updatedCartcount)=>{
           <img class="carbon-neutral" src="/assets/images/icon-carbon-neutral.svg" alt="carbon-neutral-icon">
           <p>This is a carbon-neutral delivery</p>
         </div>
-        <button id="submit-btn">Confirm Order</button>
+        <button type="submit" id="submit-btn">Confirm Order</button>
       </div>
     `
     submitOrder()
@@ -128,6 +127,33 @@ export const updateCartcount = ()=>{
     }
 }
 
+const captureItemsinfo = ()=>{
+    
+   const items = document.querySelectorAll('.items');
+    
+    const itemInfotodisplay = [];
+
+
+    items.forEach((item)=>{
+      const name = item.querySelector('.productDescription').textContent;
+      const quantity = item.querySelector('.product-quantity').textContent;
+      const price = item.querySelector('.product-price').textContent;
+      const total = item.querySelector('.product-total').textContent;
+
+
+      itemInfotodisplay.push({name,quantity,price,total});
+
+      
+    })
+
+    console.log(itemInfotodisplay)
+
+
+    return itemInfotodisplay;
+}
+
+
+
 export const renderProductlist = (productDescription,quantity,price,total)=>{
   
   const productList = document.getElementById('product-list');
@@ -148,10 +174,10 @@ export const renderProductlist = (productDescription,quantity,price,total)=>{
   }else{
     const productItem = 
     `
-      <li data-name="${productDescription}">
+      <li class ="items" data-name="${productDescription}">
         <div>
             <div class="ordered-product-container">
-              <p>${productDescription}</p>
+              <p class="productDescription">${productDescription}</p>
                 <div class="product-info-container">
                   <span class ="product-quantity">${quantity}</span> 
                   <span class ="product-price">${price}</span> 
@@ -168,19 +194,59 @@ export const renderProductlist = (productDescription,quantity,price,total)=>{
     productList.addEventListener('click', removeCartitems);
 
     let totals = document.querySelectorAll('.product-total');
-
+    const items = document.querySelectorAll('.items');
 
 
     addTotals(totals);
-
+   
 
   }
 
   updateCartcount();
 }
 
+export const displayOrder = ()=>{
+
+  const itemsInfo = captureItemsinfo()
+
+  const {name, quantity, price , total} = itemsInfo;
+
+  displayOrdersection.innerHTML = `
+  
+  <section class="display-order-section">
+      <div class="oder-header-section">
+        <img src="/assets/images/icon-order-confirmed.svg" alt="check-icon">
+        <p class="main-header">Order Confirmed</p>
+        <p class="user-message">We hope you enjoy your food</p>
+      </div>
+      <div class="odered-items-section">
+        <ul>
+          <li>
+            <div class="item-description">
+              <img src="/assets/images/image-waffle-thumbnail.jpg" alt="ordered-item-picture">
+              <div class="item-details">
+                <p class="item-name">${name}</p>
+                <span>
+                  <p>${quantity}x</p>
+                  <p>@$${price}</p>
+                </span>
+              </div>
+            </div>
+            <p class="ordered-item-total">$${total}</p>
+          </li>
+        </ul>
+        <div class="order-total">
+          <p class="ordered-total-header">Order Total</p><p class="ordered-total-amount">$46.50</p>
+        </div>
+      </div>
+      <button>Start New Order</button>
+    </section> 
+  
+  `
+}
 
 
+displayOrder()
 
 
 
