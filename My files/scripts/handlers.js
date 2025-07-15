@@ -2,7 +2,9 @@
 const displayOrdersection = document.getElementById('display-order-section');
 const productsSection = document.getElementById('products-main');
 
-import { renderSpanactive,updateCartcount } from "./renders.js";
+
+
+import { renderSpanactive,updateCartcount} from "./renders.js";
 
 export const increaseCounter = (e)=>{
     const clicked = e.target.closest('.shopping-cart-span');
@@ -42,6 +44,18 @@ export const submitOrder = ()=>{
     displayOrdersection.style.display = 'flex';
     productsSection.style.opacity = 0.3;
       
+  })
+
+}
+
+export const startnewOrder = ()=>{
+  
+  const startnewOrderbtn = document.getElementById('start-new-order');
+
+  startnewOrderbtn.addEventListener('click', ()=>{
+    
+    window.location.reload();
+
   })
 
 }

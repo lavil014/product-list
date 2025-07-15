@@ -11,6 +11,8 @@ import { renderProductlist } from "./renders.js";
   let productDescription = '';
   let price = 0;
   let total = 0;
+  let itemImage = null;
+  
 
   if(e.target.closest('.card')){
 
@@ -24,9 +26,9 @@ import { renderProductlist } from "./renders.js";
     productDescription = productInfodiv.querySelector('.product-description').textContent;
     ;
 
-    const span = e.target.closest('.shopping-cart-active');
+    const span = e.target.closest('.shopping-cart-active');    
 
-
+    itemImage = card.querySelector('.image-item').getAttribute('src');
 
     if(span){
       const counter = span.querySelector('p');
@@ -47,24 +49,16 @@ import { renderProductlist } from "./renders.js";
       } else{
         counter.textContent = quantity;
         total = quantity * price;
-        renderProductlist(productDescription,quantity,price,total);
+        renderProductlist(productDescription,quantity,price,total, itemImage);
       }
     } 
   }
- 
-            
-  const mycustomEvent = new CustomEvent('updateProductquantity', {
-        detail: {
-          name : productDescription,
-          quantity : quantity,
-          price : price,
-          total : total
-        }
-      })
-
-  document.dispatchEvent(mycustomEvent);
-
 }
+
+
+
+
+
 
 
 

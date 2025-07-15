@@ -41,8 +41,8 @@ const fetchData  = async () => {
        let {image, category, name, price} = product;   
        let selectedImage = updateImagesrc(image);
       
-       HTMLCards += renderCards(selectedImage, category, name, price)
 
+       HTMLCards += renderCards(selectedImage, category, name, price)
     });  
 
     cardContainer.innerHTML = HTMLCards;

@@ -9,24 +9,30 @@ const displayOrdersection = document.getElementById('display-order-section');
 
 
 
-import { removeCartitems, submitOrder } from "./handlers.js";
+import { removeCartitems, submitOrder, startnewOrder } from "./handlers.js";
+
 
 export const renderCards = (image, category, name , price)=>{
+
+
+
     return `
       <div class="card">
         <div class="image-container">
-          <img src="${image}" alt="product-image">
+          <img class="image-item" src="${image}" alt="product-image">
           <span class ='shopping-cart-span' data-name="${name}">
               <img src="${shoppingCartsrc}" alt="${name}"><p>Add to Cart</p>
           </span> 
         </div>
-          <div class="product-information">
-            <p class="header">${category}</p>
-            <p class="product-description">${name}</p>
-            <p class="product-price">$ ${price}</p>
-          </div>
+        <div class="product-information">
+          <p class="header">${category}</p>
+          <p class="product-description">${name}</p>
+          <p class="product-price">$ ${price}</p>
         </div>
+      </div>
     `
+
+    
 }
 
 export const renderSpanactive = (name)=>{
@@ -74,10 +80,7 @@ export const addTotals = (totals)=>{
 
 export const rendertotalContainer = (updatedCartcount)=>{
 
-  
-
  const totalContainer = document.getElementById('total-container');
-
 
   if(updatedCartcount>0){
 
@@ -139,22 +142,83 @@ const captureItemsinfo = ()=>{
       const quantity = item.querySelector('.product-quantity').textContent;
       const price = item.querySelector('.product-price').textContent;
       const total = item.querySelector('.product-total').textContent;
+      const productImage = item.getAttribute('data-image');
 
-
-      itemInfotodisplay.push({name,quantity,price,total});
-
-      
+      itemInfotodisplay.push({name, productImage, quantity,price,total});
     })
 
-    console.log(itemInfotodisplay)
-
-
     return itemInfotodisplay;
+
+}
+
+export const displayOrder = ()=>{
+ 
+  const datatoDisplay = captureItemsinfo();
+
+  let orderTotal = datatoDisplay.reduce((acc, item )=>{
+    return acc + parseFloat(item.total);
+  }, 0);
+
+  
+
+  const gettingDatatoDisplay = ()=>{
+
+    let itemsHTML = '';
+
+    datatoDisplay.forEach((data)=>{
+    
+    const {name,quantity, price, productImage, total} = data;
+
+    itemsHTML += `<li>
+            <div class="item-description">
+              <img src="${productImage}" alt="ordered-item-picture">
+              <div class="item-details">
+                <p class="item-name">${name}</p>
+                <span>
+                  <p>${quantity}x</p>
+                  <p>@$${price}</p>
+                </span>
+              </div>
+            </div>
+            <p class="ordered-item-total">$${total}</p>
+          </li>`
+  });
+
+    return itemsHTML;
+
+  }
+  
+  
+
+const newUlitems = gettingDatatoDisplay();
+const totals = document.querySelectorAll('.product-total');
+
+const totalAmount = addTotals(totals)
+
+ displayOrdersection.innerHTML = `
+  
+  <section class="display-order-section">
+      <div class="oder-header-section">
+        <img src="/assets/images/icon-order-confirmed.svg" alt="check-icon">
+        <p class="main-header">Order Confirmed</p>
+        <p class="user-message">We hope you enjoy your food</p>
+      </div>
+      <div class="odered-items-section">
+        <ul>
+         ${newUlitems}
+        </ul>
+        <div class="order-total">
+          <p class="ordered-total-header">Order Total</p><p class="ordered-total-amount">$${totalAmount}</p>
+        </div>
+      </div>
+      <button id = "start-new-order">Start New Order</button>
+    </section> 
+  
+  ` 
 }
 
 
-
-export const renderProductlist = (productDescription,quantity,price,total)=>{
+export const renderProductlist = (productDescription,quantity,price,total, itemImage)=>{
   
   const productList = document.getElementById('product-list');
   const existingProduct = productList.querySelector(`li[data-name="${productDescription}"]`);
@@ -174,7 +238,7 @@ export const renderProductlist = (productDescription,quantity,price,total)=>{
   }else{
     const productItem = 
     `
-      <li class ="items" data-name="${productDescription}">
+      <li class ="items" data-name="${productDescription}" data-image ="${itemImage}">
         <div>
             <div class="ordered-product-container">
               <p class="productDescription">${productDescription}</p>
@@ -194,59 +258,22 @@ export const renderProductlist = (productDescription,quantity,price,total)=>{
     productList.addEventListener('click', removeCartitems);
 
     let totals = document.querySelectorAll('.product-total');
-    const items = document.querySelectorAll('.items');
+    
 
 
     addTotals(totals);
-   
+    captureItemsinfo();
+    displayOrder();
+    startnewOrder()
 
   }
 
   updateCartcount();
 }
 
-export const displayOrder = ()=>{
-
-  const itemsInfo = captureItemsinfo()
-
-  const {name, quantity, price , total} = itemsInfo;
-
-  displayOrdersection.innerHTML = `
-  
-  <section class="display-order-section">
-      <div class="oder-header-section">
-        <img src="/assets/images/icon-order-confirmed.svg" alt="check-icon">
-        <p class="main-header">Order Confirmed</p>
-        <p class="user-message">We hope you enjoy your food</p>
-      </div>
-      <div class="odered-items-section">
-        <ul>
-          <li>
-            <div class="item-description">
-              <img src="/assets/images/image-waffle-thumbnail.jpg" alt="ordered-item-picture">
-              <div class="item-details">
-                <p class="item-name">${name}</p>
-                <span>
-                  <p>${quantity}x</p>
-                  <p>@$${price}</p>
-                </span>
-              </div>
-            </div>
-            <p class="ordered-item-total">$${total}</p>
-          </li>
-        </ul>
-        <div class="order-total">
-          <p class="ordered-total-header">Order Total</p><p class="ordered-total-amount">$46.50</p>
-        </div>
-      </div>
-      <button>Start New Order</button>
-    </section> 
-  
-  `
-}
 
 
-displayOrder()
+
 
 
 

@@ -7,6 +7,8 @@ Crear la seccion de el mensaje de los productos ordenados y darle estilos con CS
 Crear funcion para que me deje mandar los productos a la seccion de los productos seleccionados
 
 
+Siguiente paso para mañana Actualizar la funcion de display order y poder extraer el source de la imagen que tengo en handleProductcounter para que me deje Renderizar esta imagen en la seccion de la compra.
+
 
 
 

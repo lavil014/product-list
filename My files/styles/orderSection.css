@@ -28,6 +28,7 @@
     height: 100%;
     z-index: 999; 
     display: none;
+    font-family:"Rubik", sans-serif;
 }
 
 .display-order-section{
@@ -131,6 +132,6 @@
     padding: 0.8rem;
     border-radius: 1.5rem;
     color: var(--Rose50);
-    font-weight: 500;
+    font-weight: 800;
     cursor: pointer;
 }
