@@ -193,7 +193,7 @@ export const displayOrder = ()=>{
 const newUlitems = gettingDatatoDisplay();
 const totals = document.querySelectorAll('.product-total');
 
-const totalAmount = addTotals(totals)
+const totalAmount = orderTotal.toFixed(2);
 
  displayOrdersection.innerHTML = `
   
@@ -234,7 +234,6 @@ export const renderProductlist = (productDescription,quantity,price,total, itemI
     priceSpan.textContent = price;
     totalSpan.textContent = total;
 
-
   }else{
     const productItem = 
     `
@@ -258,16 +257,11 @@ export const renderProductlist = (productDescription,quantity,price,total, itemI
     productList.addEventListener('click', removeCartitems);
 
     let totals = document.querySelectorAll('.product-total');
-    
-
-
-    addTotals(totals);
-    captureItemsinfo();
-    displayOrder();
-    startnewOrder()
-
   }
 
+  
+  displayOrder();
+  startnewOrder()
   updateCartcount();
 }
 

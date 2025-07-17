@@ -39,11 +39,13 @@ export const submitOrder = ()=>{
   const submitBtn = document.getElementById('submit-btn');
 
   submitBtn.addEventListener('click', ()=>{
-    
-    /* This code display the order section on the UI*/ 
-    displayOrdersection.style.display = 'flex';
-    productsSection.style.opacity = 0.3;
+
+
+      /* This code display the order section on the UI*/ 
+      displayOrdersection.style.display = 'flex';
+      productsSection.style.opacity = 0.3;
       
+
   })
 
 }
