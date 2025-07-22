@@ -135,3 +135,21 @@
     font-weight: 800;
     cursor: pointer;
 }
+
+@media(width< 750px){
+
+    .display-order .odered-items-section ul li .item-description{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 1rem;
+    }
+
+    .display-order .odered-items-section ul li .item-description .item-details{
+        line-height: 1;
+    }
+
+    .display-order .odered-items-section ul li .item-description .item-details .item-name{
+        margin-bottom: -0.7rem;
+    }
+}
