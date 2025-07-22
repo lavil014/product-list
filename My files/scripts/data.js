@@ -8,7 +8,7 @@ const cartSection = document.getElementById ('cart-section');
 
 import { handleProductcounter } from "./main.js";
 import { increaseCounter } from "./handlers.js";
-import {renderCards , renderCart, renderProductlist, rendertotalContainer} from "./renders.js";
+import {renderCards , renderCart } from "./renders.js";
 
 
 

@@ -16,7 +16,7 @@
   padding: 1rem;
   min-height: 29rem;
   align-self: start;
-}
+  }
 
 .cart-section ul {
     list-style: none;
@@ -102,4 +102,10 @@
     color: var(--Rose100);
     font-weight: 700;
     cursor: pointer;
+}
+
+@media(width < 750px){
+    .cart-section{
+        width: 100%;
+    }
 }
